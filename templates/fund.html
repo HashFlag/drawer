@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/iconfont.css">
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <script src="/static/js/index.js"></script>
+</head>
+<body>
+    <!-- 头部标签 -->
+    <div class="title">
+        <div class="title_content">
+            <div class="title_logo">
+                <img src="/static/img/tx.jpg" alt="">
+                <div class="title_logo_t"><p>抽屉新热榜</p></div>
+            </div>
+            <!-- ulli标签块 -->
+            <div class="title_mes">
+                <ul>
+                    <li><a href="/index/">全部</a></li>
+                    <li><a href="#">42区</a></li>
+                    <li><a href="#">段子</a></li>
+                    <li><a href="#">图片</a></li>
+                    <li><a href="#">挨踢1024</a></li>
+                    <li><a href="#">你问我答</a></li>
+                </ul>
+            </div>
+            <div class="title_mes_use">
+                <div class="title_action">
+                    <span class="iconfont">&#xe633;</span>
+                    <span style="cursor: pointer;">动态</span>
+                </div>
+                <div class="title_hint">
+                    <span class="iconfont">&#xe8be;</span>
+                    <span style="cursor: pointer;">通知</span>
+                </div>
+            </div>
+            <!-- 用户 -->
+            <div class="title_user">
+                <div class="imgs">
+                    <img src="/static/img/tx.jpg" alt="">
+                </div>
+                <div class="user">
+                    <p class="username">{{ username }}我的新热榜</p>
+                </div>
+            </div>
+            <!-- 搜索栏 -->
+            <div class="title_search">
+                <div class="spans">
+                    <span class="iconfont" style="cursor: pointer;">&#xe63c;</span>
+                </div>
+                <input type="text" name="search">
+            </div>
+        </div>
+    </div>
+    <!-- 中间主体 -->
+    {% block content %}
+
+    {% endblock %}
+    {% block LoginOrRegister %}
+
+    {% endblock %}
+    <!-- 底部内容 -->
+    <div class="bottoms"></div>
+    {% block javascripts %}
+
+    {% endblock %}
+</body>
+</html>

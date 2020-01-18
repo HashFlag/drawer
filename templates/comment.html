@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-2.1.4.min.js"></script>
+    <style type="text/css">
+        .comment_msg{
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="comment">
+        <a comment_id="2" class="com">评论模板层级样式</a>
+        <div class="comment_list">
+            <div class="comment_msg">
+                <span>一级评论</span>
+                <div class="comment_msg">
+                    <span>二级评论</span>
+                    <div class="comment_msg">
+                        <span>三级评论</span>
+                    </div>
+                </div>
+            </div>
+            <div class="comment_msg">
+                <span>一级评论</span>
+                <div class="comment_msg">
+                    <span>二级评论</span>
+                </div>
+            </div>
+            <div class="comment_msg">
+                <span>一级评论</span>
+            </div>
+        </div>
+    </div>
+    <div class="comment_list">
+        <a comment_id="1" class="com">评论</a>
+    </div>
+</body>
+<script>
+    $(function () {
+        commentTab();
+    });
+    function commentTab(){
+        $('.com').click(function(){
+            var comment_id = $(this).attr("comment_id");
+            var that = $(this);
+            $.ajax({
+                url:"/comment/",
+                type:"post",
+                data:{comment_id:comment_id},
+                dataType:"html",
+                success:function (ret) {
+                    console.log(ret);
+                    //addDivs(ret,that);
+                    that.after(ret);
+                }
+            })
+        })
+    };
+    function addDivs(data,that){
+        var html = '<div class="comment_list">';
+        $.each(data,function(k,v){
+            var arg = '<div class="comment_msg"><span>';
+            arg += v.content +'</span>';
+            arg += diGui(v.son);
+            arg += '</div>';
+            html += arg;
+        });
+        html += "</div>";
+        that.after(html);
+    }
+    function diGui(sons){
+        var html = '';
+        $.each(sons,function(k,v){
+            var args = '<div class="comment_msg"><span>';
+            args += v.content +'</span>';
+            args += diGui(v.son);
+            args += '</div>';
+            html += args;
+        });
+        return html;
+    }
+</script>
+</html>
