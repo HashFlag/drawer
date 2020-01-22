@@ -24,17 +24,16 @@
                     <p>我们已经见识过许多版本的“触敏电子皮肤”，它可以为机器人或义肢带来“敏感性”上的加成，但多数专注
                     于“皮肤”本身，而忽略了“触感”。好消息是哈尔滨工业大学科学家们选择了一条不通过的发展道路，打造出一
                     种突出于弹性的玛法传感器...<p>
-                </div>
-                <div class="left_message_image">
-                    <img src="../static/img/wlop.jpg" alt="">
-                </div>
-            </div>
-            <div class="left_message">
-                <div class="left_message_hidden">
-                    <h4>哈工大开发出“电子体毛”：可增加机器人的敏感性</h4>
-                    <p>我们已经见识过许多版本的“触敏电子皮肤”，它可以为机器人或义肢带来“敏感性”上的加成，但多数专注
-                    于“皮肤”本身，而忽略了“触感”。好消息是哈尔滨工业大学科学家们选择了一条不通过的发展道路，打造出一
-                    种突出于弹性的玛法传感器...<p>
+                    <div class="left_message_comment">
+                        <div class="support">
+                            <span>赞</span>
+                            <span id="zan" class="iconfont">&#xe688;</span>
+                        </div>
+                        <div class="comment">
+                            <span>评论</span>
+                            <span id="zan" class="iconfont">&#xe632;</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="left_message_image">
                     <img src="../static/img/wlop.jpg" alt="">
@@ -48,9 +47,32 @@
                     种突出于弹性的玛法传感器...<p>
                     <div class="left_message_comment">
                         <div class="support">
-                            <span class="iconfont">&#xe688;</span>
+                            <span>赞</span>
+                            <span id="zan" class="iconfont">&#xe688;</span>
                         </div>
                         <div class="comment">
+                            <span>评论</span>
+                            <span id="zan" class="iconfont">&#xe632;</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="left_message_image">
+                    <img src="../static/img/wlop.jpg" alt="">
+                </div>
+            </div>
+            <div class="left_message">
+                <div class="left_message_hidden">
+                    <h4>哈工大开发出“电子体毛”：可增加机器人的敏感性</h4>
+                    <p>我们已经见识过许多版本的“触敏电子皮肤”，它可以为机器人或义肢带来“敏感性”上的加成，但多数专注
+                    于“皮肤”本身，而忽略了“触感”。好消息是哈尔滨工业大学科学家们选择了一条不通过的发展道路，打造出一
+                    种突出于弹性的玛法传感器...<p>
+                    <div class="left_message_comment">
+                        <div class="support">
+                            <span>赞</span>
+                            <span id="zan" class="iconfont">&#xe688;</span>
+                        </div>
+                        <div class="comment">
+                            <span>评论</span>
                             <span class="iconfont">&#xe632;</span>
                         </div>
                     </div>
@@ -76,6 +98,39 @@
             <div class="user_sonpage_box">退出</div>
         </div>
     </div>
+    <script>
+        $(function(){
+            $("#zan").click(function(){
+                var fz = 12; //font-size
+                var tp = 5; //top
+                var lf = 5; //left
+                var op = 1; //opacity
+                var tag = document.createElement("span");
+                tag.innerHTML = "+1"; //因为是文本所以innerText与innerHtml的使用效果相同
+                tag.style.color = "red";//字体颜色
+                tag.style.fontSize = fz+ "px";//字体大小
+                tag.style.top = lf + "px";//移动方向
+                tag.style.opacity = op; //透明度
+                $(this).append(tag);//把span标签添加到class属性值为zan的div的后面
+                var tim = setInterval(function(){ //自动进行循环，直到条件达到clearInterval(tim)时停止
+                    fz += 5; //font-size
+                    tp += 5; //top
+                    lf += 5; //left
+                    op -= 0.2; //opacity
+                    tag.innerHTML = "+1";
+                    tag.style.color = "red";
+                    tag.style.fontSize = fz+ "px";
+                    tag.style.top = lf + "px";
+                    tag.style.opacity = op; //透明度
+                    if (op<0){ // 判定计时停止的条件
+                        clearInterval(tim);
+                        $("tag").remove();
+                    }
+
+                },50)
+            });
+        })
+    </script>
 {% endblock %}
 {% block LoginOrRegister %}
     <!-- 遮罩层 -->
