@@ -2,6 +2,7 @@ $(function(){
     userTab();
     userlogin();
     userregister();
+    sendTab();
 });
 // 用户下拉信息详情
 function userTab(){
@@ -31,3 +32,17 @@ function userregister(){
         $(".register").hide();
     })
 }
+// 信息发布
+function sendTab(){
+    $('#left_title_send').click(function(){
+        $(".box").show();
+        $(".user_send").show();
+    });
+    $(".iconfont").click(function(){
+        $(".box").hide();
+        $(".user_send").hide();
+    })
+}
+
+
+

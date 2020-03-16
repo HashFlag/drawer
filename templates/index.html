@@ -1,4 +1,5 @@
 {% extends "fund.html" %}
+{% load tags %}
 {% block content %}
     <div class="content">
         <!-- 左侧块 -->
@@ -15,71 +16,49 @@
                     <p>即时排序</p>
                 </div>
                 <div class="left_title_post">
-                    <input type="button" value="+ &nbsp 发布" style="cursor: pointer;">
+                    <input id="left_title_send" type="button" value="+ &nbsp 发布" style="cursor: pointer;">
                 </div>
+            </div>
+            {% for foo in queryset %}
+            <div class="send_user">
+
+                <div class="send_user_img">
+                    <img src="/static/img/tx02.jpeg" alt="" style="width: 30px;height: 30px;border-radius: 50%">
+                </div>
+                <div class="send_user_name">{% senduser foo %}</div>
+                <div class="send_user_time"><h7>{{ foo.ctime }}</h7></div>
             </div>
             <div class="left_message">
                 <div class="left_message_hidden">
-                    <h4>哈工大开发出“电子体毛”：可增加机器人的敏感性</h4>
-                    <p>我们已经见识过许多版本的“触敏电子皮肤”，它可以为机器人或义肢带来“敏感性”上的加成，但多数专注
-                    于“皮肤”本身，而忽略了“触感”。好消息是哈尔滨工业大学科学家们选择了一条不通过的发展道路，打造出一
-                    种突出于弹性的玛法传感器...<p>
-                    <div class="left_message_comment">
-                        <div class="support">
-                            <span>赞</span>
-                            <span id="zan" class="iconfont">&#xe688;</span>
-                        </div>
-                        <div class="comment">
-                            <span>评论</span>
-                            <span id="zan" class="iconfont">&#xe632;</span>
-                        </div>
-                    </div>
+                    <h4>{{ foo.title }}</h4>
+                    <p>{{ foo.message }}</p>
                 </div>
                 <div class="left_message_image">
-                    <img src="../static/img/wlop.jpg" alt="">
+                    <img src="/{{ foo.path }}" alt="">
                 </div>
             </div>
-            <div class="left_message">
-                <div class="left_message_hidden">
-                    <h4>哈工大开发出“电子体毛”：可增加机器人的敏感性</h4>
-                    <p>我们已经见识过许多版本的“触敏电子皮肤”，它可以为机器人或义肢带来“敏感性”上的加成，但多数专注
-                    于“皮肤”本身，而忽略了“触感”。好消息是哈尔滨工业大学科学家们选择了一条不通过的发展道路，打造出一
-                    种突出于弹性的玛法传感器...<p>
-                    <div class="left_message_comment">
-                        <div class="support">
-                            <span>赞</span>
-                            <span id="zan" class="iconfont">&#xe688;</span>
-                        </div>
-                        <div class="comment">
-                            <span>评论</span>
-                            <span id="zan" class="iconfont">&#xe632;</span>
-                        </div>
+                <div class="left_message_mes">
+                    <div class="left_message_zan">点赞
+                        <span class="iconfont" style="margin-left: 2px;">&#xe688;</span>
+                    </div>
+                    <div class="left_message_zan">评论
+                        <span class="iconfont" style="margin-left: 2px;">&#xe632;</span>
                     </div>
                 </div>
-                <div class="left_message_image">
-                    <img src="../static/img/wlop.jpg" alt="">
+            {% endfor %}
+            <!-- 分页 -->
+            <div class="mes_pages">
+                {% if queryset.has_previous %}
+                <div class="page_number_last">
+                    <a href="?p={{ queryset.previous_page_number }}">上一页</a>
                 </div>
-            </div>
-            <div class="left_message">
-                <div class="left_message_hidden">
-                    <h4>哈工大开发出“电子体毛”：可增加机器人的敏感性</h4>
-                    <p>我们已经见识过许多版本的“触敏电子皮肤”，它可以为机器人或义肢带来“敏感性”上的加成，但多数专注
-                    于“皮肤”本身，而忽略了“触感”。好消息是哈尔滨工业大学科学家们选择了一条不通过的发展道路，打造出一
-                    种突出于弹性的玛法传感器...<p>
-                    <div class="left_message_comment">
-                        <div class="support">
-                            <span>赞</span>
-                            <span id="zan" class="iconfont">&#xe688;</span>
-                        </div>
-                        <div class="comment">
-                            <span>评论</span>
-                            <span class="iconfont">&#xe632;</span>
-                        </div>
-                    </div>
+                {% endif %}
+                {% page_list queryset %}
+                {% if queryset.has_next %}
+                <div class="page_number_next">
+                    <a href="?p={{ queryset.next_page_number }}">下一页</a>
                 </div>
-                <div class="left_message_image">
-                    <img src="../static/img/wlop.jpg" alt="">
-                </div>
+                {% endif %}
             </div>
         </div>
         <!-- 右侧块 -->
@@ -87,50 +66,24 @@
         </div>
         <!-- user下拉框 -->
         <div class="user_sonpage">
-            <div class="user_sonpage_box">我的收藏</div>
-            <hr style="top: 0;padding: 0;margin: 0;">
-            <div class="user_sonpage_box" id="userLogin">登录</div>
-            <hr style="top: 0;padding: 0;margin: 0;">
-            <div class="user_sonpage_box" id="userRegister">注册</div>
-            <hr style="top: 0;padding: 0;margin: 0;">
-            <div class="user_sonpage_box">设置</div>
-            <hr style="top: 0;padding: 0;margin: 0;">
-            <div class="user_sonpage_box">退出</div>
+            {% if username == null %}
+                <div class="user_sonpage_box" id="userLogin">登录</div>
+                <hr style="top: 0;padding: 0;margin: 0;">
+                <div class="user_sonpage_box" id="userRegister">注册</div>
+                <hr style="top: 0;padding: 0;margin: 0;">
+            {% else %}
+                <div class="user_sonpage_box">收藏</div>
+                <hr style="top: 0;padding: 0;margin: 0;">
+                <div class="user_sonpage_box">管理</div>
+                <hr style="top: 0;padding: 0;margin: 0;">
+                <div class="user_sonpage_box">历史</div>
+                <hr style="top: 0;padding: 0;margin: 0;">
+                <div class="user_sonpage_box">设置</div>
+                <hr style="top: 0;padding: 0;margin: 0;">
+                <div class="user_sonpage_box"><a href="/logout/">注销</a></div>
+            {% endif %}
         </div>
     </div>
-    <script>
-        $(function(){
-            $("#zan").click(function(){
-                var fz = 12; //font-size
-                var tp = 5; //top
-                var lf = 5; //left
-                var op = 1; //opacity
-                var tag = document.createElement("span");
-                tag.innerHTML = "+1"; //因为是文本所以innerText与innerHtml的使用效果相同
-                tag.style.color = "red";//字体颜色
-                tag.style.fontSize = fz+ "px";//字体大小
-                tag.style.top = lf + "px";//移动方向
-                tag.style.opacity = op; //透明度
-                $(this).append(tag);//把span标签添加到class属性值为zan的div的后面
-                var tim = setInterval(function(){ //自动进行循环，直到条件达到clearInterval(tim)时停止
-                    fz += 5; //font-size
-                    tp += 5; //top
-                    lf += 5; //left
-                    op -= 0.2; //opacity
-                    tag.innerHTML = "+1";
-                    tag.style.color = "red";
-                    tag.style.fontSize = fz+ "px";
-                    tag.style.top = lf + "px";
-                    tag.style.opacity = op; //透明度
-                    if (op<0){ // 判定计时停止的条件
-                        clearInterval(tim);
-                        $("tag").remove();
-                    }
-
-                },50)
-            });
-        })
-    </script>
 {% endblock %}
 {% block LoginOrRegister %}
     <!-- 遮罩层 -->
@@ -219,12 +172,46 @@
         </form>
     </div>
 {% endblock %}
+{% block sends %}
+    <!-- 遮罩层 -->
+    <div class="box"></div>
+    <!-- 发布 -->
+    <div class="user_send">
+        <div class="user_send_title">
+            <span>动态发布</span>
+            <span class="iconfont" style="margin-left: 340px;cursor: pointer;">&#xe6dc;</span>
+        </div>
+        <div class="user_send_msg">
+            <form id="sendnews">
+                <div class="send_list">标题：<input type="text" id="title" name="title" placeholder="标题"></div>
+                <div class="send_list">内容：<textarea id="textmsg" type="text" cols="40" rows="10"></textarea></div>
+                <div class="send_list">连接：<input type="text" id="url" name="url" placeholder="资源连接（可以为空）" /></div>
+                <div class="send_list">分类：
+                    <select name="" id="selectmsg">
+                        <option value="1">42区</option>
+                        <option value="2">段子</option>
+                        <option value="3">图片</option>
+                        <option value="4">挨踢1024</option>
+                        <option value="5">你问我答</option>
+                    </select>
+                </div>
+            </form>
+            <div class="send_list">
+                图片上传：<input type="file" id="userfile">
+            </div>
+            <div class="send_list">
+                <input id="buttonSend" type="button" value="发布" style="cursor: pointer;">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+<!-- 用户 -->
 {% block javascripts %}
     <script>
         $(function(){
             emailTab();
-            {#registerTab(e);#}
             loginTab();
+            msgSend();
         });
         /* 邮箱验证 */
         function emailTab(){
@@ -354,6 +341,43 @@
                 })
             })
         }
+        /* 消息发布 */
+        function msgSend(){
+            $("#buttonSend").click(function(){
+                var dic = new FormData();
+                dic.append('title', $("#title").val());
+                dic.append('textmsg', $("#textmsg").val());
+                dic.append('url', $("#url").val());
+                dic.append('selectmsg', $("#selectmsg").val());
+                dic.append('userfile', document.getElementById('userfile').files[0]);
+                $.ajaxSetup({
+                　　data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+                $.ajax({
+                    url:"/index/",
+                    type:"post",
+                    data:dic,
+                    dataType:"json",
+                    processData:false,
+                    contentType:false,
+                    success:function(ret){
+                        if (ret.success){
+                           alert("发布成功");
+                           location.reload();
+                        }
+                    }
+                })
+            });
+        }
     </script>
 {% endblock %}
+
+
+
+
+
+
+
+
+
 

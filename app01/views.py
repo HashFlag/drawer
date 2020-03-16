@@ -1,52 +1,56 @@
-from django.shortcuts import render,HttpResponse
-from django import forms
+from django.shortcuts import render, HttpResponse
+from app01 import models
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import json
+import os
 # Create your views here.
 
-#主页
+
+# 主页
 def index(request):
     if request.method == "GET":
-        return render(request, "index.html")
+        username = request.session.get("username")
+        new_obj = models.news.objects.all()
+        paginator = Paginator(new_obj, 4)
+        page = request.GET.get("p")
+        try:
+            query_sets = paginator.page(page)
+        except PageNotAnInteger:
+            # 如果页不是整数，则传递第一页。
+            query_sets = paginator.page(1)
+        except EmptyPage:
+            # 如果页面超出范围（例如9999），则提交结果的最后一页。
+            query_sets = paginator.page(paginator.num_pages)
+        return render(request, "index.html", {'queryset': query_sets, 'username': username})
     elif request.method == "POST":
-        return render(request,"index.html")
-def userp(request):
-    # print(type(request))
-    from django.core.handlers.wsgi import WSGIRequest
-    print(request.environ)
-    print(request.environ.get('HTTP_USER_AGENT'))
-    return render(request,"userp.html")
-def comment(request):
-    if request.method == "GET":
-        return render(request,"comment.html")
-    elif request.method == "POST":
-        id = request.POST.get('comment_id')
-        comment_list = [
-            {'id': 1, 'content': 'Python', 'user': '阿松大', 'parent_id': None},
-            {'id': 2, 'content': 'Java', 'user': '阿松大', 'parent_id': None},
-            {'id': 3, 'content': 'PHP', 'user': '阿松大', 'parent_id': None},
-            {'id': 4, 'content': '你hh', 'user': '按文', 'parent_id': 1},
-            {'id': 5, 'content': '阿萨德', 'user': '豆腐干', 'parent_id': 1},
-            {'id': 6, 'content': '风格和', 'user': '豆腐干', 'parent_id': 4},
-            {'id': 7, 'content': '繁华的', 'user': '微软', 'parent_id': 2},
-            {'id': 8, 'content': '刀锋', 'user': '微软', 'parent_id': 3},
-            {'id': 9, 'content': '我想静静', 'user': '阿松大', 'parent_id': 8},
-            {'id': 10, 'content': '我想静静', 'user': '全文', 'parent_id': None},
-            {'id': 11, 'content': '我是符符', 'user': 'xiaopang', 'parent_id': 6},
-        ]
-        ret = []
-        comment_dict = {}
-        for line in comment_list:
-            line.update({'son': []})  # 给数据加键值
-            comment_dict[line['id']] = line  # 添加到字典中
-        for r in comment_list:
-            comment_line = r
-            comment_line_parent_id = comment_line['parent_id']
-            if not comment_line_parent_id:
-                ret.append(r)
-            else:
-                comment_dict[comment_line_parent_id]['son'].append(r)
-        #return HttpResponse(json.dumps(ret))
-        return render(request, 'comments.html', {'comment_tree': ret})
+        username = request.session.get("username")
+        pop_dict = {"status": True, "error": None, "data": None, "success": None}
+        title = request.POST.get("title")
+        message = request.POST.get("textmsg")
+        url = request.POST.get("url", None)
+        userSend = models.userInfo.objects.get(username=username)
+        nt = request.POST.get("selectmsg")
+        path = ""
+        file_obj = request.FILES.get("userfile")
+        if file_obj:
+            path = os.path.join('static', 'upload', file_obj.name)
+            with open(path, 'wb+') as f:
+                for chunk in file_obj.chunks():
+                    f.write(chunk)
+        if message:
+            models.news.objects.create(title=title,
+                                       message=message,
+                                       url=url,
+                                       userSend=userSend,
+                                       nt=nt, path=path)
+            pop_dict['success'] = True
+        else:
+            pop_dict['error'] = "请填写内容"
+        return HttpResponse(json.dumps(pop_dict))
+
+
+
+
 
 
 

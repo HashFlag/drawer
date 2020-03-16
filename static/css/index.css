@@ -1,6 +1,5 @@
 body{
     width: 100%;
-    height: 100%;
     padding: 0;
     margin: 0;
     background-color: #eeeeee;
@@ -115,6 +114,7 @@ body{
 .imgs img{
     width: 100%;
     height: 100%;
+    border-radius: 50%;
 }
 .user{
     width: 160px;
@@ -172,7 +172,6 @@ body{
 /* 中间主体 */
 .content{
     width: 1200px;
-    height: 1080px;
     top: 0;
     bottom: 0;
     left: 0;
@@ -187,7 +186,6 @@ body{
 .left{
     width: 750px;
     margin-left: 40px;
-    
 }
 .left_title{
     width: 750px;
@@ -261,9 +259,29 @@ body{
     background-color: rgb(50, 250, 250);
     float: right;
 }
+.send_user{
+    width: 750px;
+    overflow: hidden; 
+    margin-top: 20px;
+}
+.send_user_img{
+    margin-left: 2px;
+    float: left;
+}
+.send_user_name{
+    margin-left: 10px;
+    font-size: 20px;
+    float: left;
+}
+.send_user_time{
+    margin-left: 10px;
+    font-size: 10px;
+    margin-top: 10px;
+    float: left;
+}
 .left_message{
     width: 750px;
-    border-bottom: 1px solid black; 
+    /* border-bottom: 1px solid black;  */
     overflow: hidden;  
 }
 .left_message_hidden{
@@ -274,26 +292,83 @@ body{
     width: 130px;
     height: 130px;
     float: right;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 30px;
+    margin-bottom: 10px;
 }
 .left_message_image img{
     width: 130px;
     height: 130px;
 }
-/* 点赞和评论 */
-.left_message_comment{
+.left_message_mes{
+   width: 100%;
+   margin-top: 2px;
+   border-bottom: 1px solid black;
+   padding-bottom:10px;
+   overflow: hidden;
+}
+.left_message_zan{
+    width: 100px;
+    float: left;
+}
+.left_message_zan{
+    width: 100px;
+    float: left;
+}
+/* 分页 */
+.mes_pages{
     width: 100%;
-    height: 25px;
-    float: bottom;
+    /* border: 1px solid red; */
+    margin-top:50px;
+    padding-bottom: 60px;
+    overflow: hidden;
 }
-.support{
+.page_number{
+    width: 36px;
+    height: 36px;
+    border: rgb(14, 212, 238) 1px solid;
+    text-align: center;
+    font-size:16px ;
+    background-color: rgb(111, 252, 252);
+    border-radius: 10px;
+    margin-left: 2px;
     float: left;
-    margin-left: 30px;
 }
-.comment{
+.page_number a{
+    display: block;
+    margin-top: 6px;
+    text-decoration: none;
+}
+.page_number_last{
+    width: 60px;
+    height: 36px;
+    border: rgb(14, 212, 238) 1px solid;
+    text-align: center;
+    font-size:16px ;
+    background-color: rgb(111, 252, 252);
+    border-radius: 10px;
+    margin-left: 2px;
     float: left;
-    margin-left: 30px;
+}
+.page_number_last a{
+    display: block;
+    margin-top: 6px;
+    text-decoration: none;
+}
+.page_number_next{
+    width: 60px;
+    height: 36px;
+    border: rgb(14, 212, 238) 1px solid;
+    text-align: center;
+    font-size:16px ;
+    background-color: rgb(111, 252, 252);
+    border-radius: 10px;
+    margin-left: 2px;
+    float: left;
+}
+.page_number_next a{
+    display: block;
+    margin-top: 6px;
+    text-decoration: none;
 }
 /* 遮罩层 */
 .box{
@@ -407,7 +482,50 @@ body{
     width: 200px;
     height: 25px;
 }
-
+/* 消息发布 */
+.user_send{
+    border: 1px solid black;
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    z-index: 40;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.user_send_title{
+    width: 100%;
+    height: 40px;
+    background-color: rgb(175, 231, 238);
+    margin-bottom:20px;
+}
+.user_send_title span{
+    color: rgb(14, 212, 238);
+    font-size: 26px;
+    margin-left: 15px;
+}
+.user_send_msg{
+    width: 400px;
+    height: 510px;
+    /* border: black 1px solid; */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 0;
+}
+.send_list{
+    margin-top: 20px;
+}
+#buttonSend{
+    width: 60px;
+    height: 30px;
+    background-color: rgb(50, 250, 250);
+    float: right;
+}
 /* 右侧块 */
 
 

@@ -5,16 +5,16 @@
     <title>index</title>
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
-    <script src="/static/js/jquery-3.1.1.min.js"></script>
-    <script src="/static/js/index.js"></script>
+    <link rel="stylesheet" href="/static/plugins/dropzone/dropzone.css">
+
 </head>
 <body>
     <!-- 头部标签 -->
     <div class="title">
         <div class="title_content">
             <div class="title_logo">
-                <img src="/static/img/tx.jpg" alt="">
-                <div class="title_logo_t"><p>抽屉新热榜</p></div>
+                <img src="/static/img/bbslogos.jpg" alt="">
+                <div class="title_logo_t"><p>BBS论坛</p></div>
             </div>
             <!-- ulli标签块 -->
             <div class="title_mes">
@@ -43,7 +43,12 @@
                     <img src="/static/img/tx.jpg" alt="">
                 </div>
                 <div class="user">
-                    <p class="username">{{ username }}我的新热榜</p>
+                    {% if username == null %}
+                        <p class="username">登录/注册</p>
+                    {% else %}
+                        <p class="username">{{ username }}</p>
+                    {% endif %}
+
                 </div>
             </div>
             <!-- 搜索栏 -->
@@ -56,16 +61,16 @@
         </div>
     </div>
     <!-- 中间主体 -->
-    {% block content %}
-
-    {% endblock %}
-    {% block LoginOrRegister %}
-
-    {% endblock %}
+    {% block content %}{% endblock %}
+    {% block LoginOrRegister %}{% endblock %}
+    {% block sends %}{% endblock %}
     <!-- 底部内容 -->
     <div class="bottoms"></div>
-    {% block javascripts %}
-
-    {% endblock %}
 </body>
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/plugins/dropzone/dropzone.js"></script>
+    <script src="/static/js/index.js"></script>
+    {% block javascripts %}{% endblock %}
+    {% block bottom-js %}{% endblock %}
 </html>
