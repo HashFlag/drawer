@@ -46,7 +46,7 @@
                     {% if username == null %}
                         <p class="username">登录/注册</p>
                     {% else %}
-                        <p class="username">{{ username }}</p>
+                        <p id="usern" class="username">{{ username }}</p>
                     {% endif %}
 
                 </div>
@@ -71,6 +71,5 @@
     <script src="/static/js/jquery.cookie.js"></script>
     <script src="/static/plugins/dropzone/dropzone.js"></script>
     <script src="/static/js/index.js"></script>
-    {% block javascripts %}{% endblock %}
-    {% block bottom-js %}{% endblock %}
+    <script src="/static/js/index-1.1.js"></script>
 </html>

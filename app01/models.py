@@ -64,6 +64,11 @@ class comment(models.Model):
 # related_query_name也是反向查询时使用的替代名字
 
 
+# 点赞
+class zan(models.Model):
+    news = models.ForeignKey(to="news", to_field="id", on_delete=models.CASCADE)
+    username = models.CharField(max_length=32, unique=True)
+    bools = models.BooleanField(default=False, null=True)
 
 
 

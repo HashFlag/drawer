@@ -19,10 +19,11 @@ from app01 import views
 from app01 import usermsg
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', views.index),
     path('useremail/', usermsg.useremail),
     path('register/', usermsg.register),
     path('checkCode/', usermsg.checkCode),
     path('login/', usermsg.login),
     path('logout/', usermsg.logout),
+    path('index/', views.index),
+    path('zan/', views.zan),
 ]

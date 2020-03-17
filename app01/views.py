@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from app01 import models
+from django.db.models import F
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import json
 import os
@@ -49,6 +50,34 @@ def index(request):
         return HttpResponse(json.dumps(pop_dict))
 
 
+# 点赞
+def zan(request):
+    pop_dict = {'success': None}
+    if request.method == "POST":
+        id = request.POST.get('id')
+        username = request.POST.get("username")
+        filte = models.zan.objects.get(news=id)
+        newsid = models.news.objects.get(id=id)
+        newsids = models.news.objects.filter(id=id)
+        if not filte:
+            newsids.update(favorcount=F("favorcount")+1)
+            models.zan.objects.create(news=newsid, username=username, bools=True)
+            pop_dict['success'] = True
+            piece = models.news.objects.filter(id=id)
+            pop_dict['num'] = piece[0].favorcount
+        elif not filte.bools:
+            newsids.update(favorcount=F("favorcount") + 1)
+            models.zan.objects.filter(news=id, username=username).update(bools=True)
+            pop_dict['success'] = True
+            piece = models.news.objects.filter(id=id)
+            pop_dict['num'] = piece[0].favorcount
+        else:
+            newsids.update(favorcount=F("favorcount") - 1)
+            models.zan.objects.filter(news=id, username=username).update(bools=False)
+            pop_dict['success'] = False
+            piece = models.news.objects.filter(id=id)
+            pop_dict['num'] = piece[0].favorcount
+    return HttpResponse(json.dumps(pop_dict))
 
 
 
