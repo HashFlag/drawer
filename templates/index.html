@@ -19,36 +19,54 @@
                     <input id="left_title_send" type="button" value="+ &nbsp 发布" style="cursor: pointer;">
                 </div>
             </div>
-            {% for foo in queryset %}
-            <div class="send_user">
+            <div class="" id="messages">
+                <ul style="list-style:none;margin: 0;padding: 0">
+                {% for foo in queryset %}
+                <li>
+                    <div class="send_user">
+                        <div class="send_user_img">
+                            <img src="/static/img/tx02.jpeg" alt="" style="width: 30px;height: 30px;border-radius: 50%">
+                        </div>
+                        <div class="send_user_name">{% senduser foo %}</div>
+                        <div class="send_user_time"><h7>{{ foo.ctime }}</h7></div>
+                    </div>
+                    <div class="left_message">
+                        <div class="left_message_hidden">
+                            <h4>{{ foo.title }}</h4>
+                            <p>{{ foo.message }}</p>
+                        </div>
+                        <div class="left_message_image">
+                            <img src="/{{ foo.path }}" alt="">
+                        </div>
+                    </div>
+                    <div class="left_message_mes">
+                        <div class="left_message_zan" id="left_zan">
+                            <span id="zan" class="iconfont" style="margin-left: 2px;cursor:pointer;">&#xe688;</span>
+                            <span id="zan-num">{{ foo.favorcount }}</span>
+                            <div id="msg-id" style="display: none;">{{ foo.id }}</div>
+                        </div>
+                        <div class="left_message_zan" >
+                            <span id="comment" class="iconfont" style="margin-left: 2px;cursor:pointer;">&#xe632;</span>
+                            <span>{{ foo.commentcount }}</span>
+                        </div>
+                    </div>
+                    <div class="msg_comment">
+                        <div class="user-face">
+                            <img class="user-head" cols="80" rows="4" src="/static/img/wlop.jpg">
+                        </div>
+                        <div class="textarea-container">
+                            <textarea cols="80" name="msg" rows="4"
+                                      placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"
+                                      class="ipt-txt"></textarea>
+                            <button type="submit" class="comment-submit">发表评论</button>
+                        </div>
+                        <div class="comments">评论</div>
+                    </div>
+                </li>
+                {% endfor %}
+                </ul>
+            </div>
 
-                <div class="send_user_img">
-                    <img src="/static/img/tx02.jpeg" alt="" style="width: 30px;height: 30px;border-radius: 50%">
-                </div>
-                <div class="send_user_name">{% senduser foo %}</div>
-                <div class="send_user_time"><h7>{{ foo.ctime }}</h7></div>
-            </div>
-            <div class="left_message">
-                <div class="left_message_hidden">
-                    <h4>{{ foo.title }}</h4>
-                    <p>{{ foo.message }}</p>
-                    <div id="msg-id" style="display: none;">{{ foo.id }}</div>
-                </div>
-                <div class="left_message_image">
-                    <img src="/{{ foo.path }}" alt="">
-                </div>
-            </div>
-                <div class="left_message_mes">
-                    <div class="left_message_zan" id="left_zan">
-                        <span id="zan" class="iconfont" style="margin-left: 2px;cursor:pointer;">&#xe688;</span>
-                        <span id="zan-num">{{ foo.favorcount }}</span>
-                    </div>
-                    <div class="left_message_zan" >
-                        <span id="comment" class="iconfont" style="margin-left: 2px;cursor:pointer;">&#xe632;</span>
-                        <span>123</span>
-                    </div>
-                </div>
-            {% endfor %}
             <!-- 分页 -->
             <div class="mes_pages">
                 {% if queryset.has_previous %}
@@ -102,10 +120,10 @@
         </div>
         <form id="loginForm">
             <div class="login_Msg" id="login_Msg">
-                <p><input type="text" name="username" id="username" placeholder="请输入用户名或邮箱"></p>
+                <p><input type="text" name="loginname" id="loginname" placeholder="请输入用户名或邮箱"></p>
             </div>
             <div class="login_Msg" id="login_Msg">
-                <p><input type="password" name="pwd" id="pwd" placeholder="请输入密码"></p>
+                <p><input type="password" name="pwds" id="pwds" placeholder="请输入密码"></p>
             </div>
             <div class="login_Msg" id="login_Msg">
                 <p style="overflow: hidden">

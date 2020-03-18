@@ -67,7 +67,7 @@ class comment(models.Model):
 # 点赞
 class zan(models.Model):
     news = models.ForeignKey(to="news", to_field="id", on_delete=models.CASCADE)
-    username = models.CharField(max_length=32, unique=True)
+    username = models.CharField(max_length=32, null=True)
     bools = models.BooleanField(default=False, null=True)
 
 

@@ -162,27 +162,28 @@ function msgSend(){
 }
 /* 点赞功能 */
 function zanTab(){
-    $("#zan").click(function(){
-        $("#zan-num").remove();
-        $(".zan-num").remove();
-        let id = $("#msg-id").text();
+    $("#messages").on('click','#zan',function(){
+        let tds=$(this).parent().children("#msg-id").text();
+        let tdp=$(this).parent().children("#zan-num")[0];
+        let tdc=$(this).parent().children("#zan")[0];
+        $(tdp).remove();
         let username = $("#usern").text();
         $.ajax({
             url:"/zan/",
             type:"post",
-            data:{id:id, username:username},
+            data:{id:tds, username:username},
             dataType:'json',
             headers:{'Content-Type' : 'application/x-www-form-urlencoded'},
             success: function(arg){
                 let num = document.createElement("span");
                 num.innerText = arg.num;
                 num.style = "margin-left:5px;";
-                num.className = "zan-num";
-                $("#zan").after(num);
+                num.id = "zan-num";
+                $(tdc).after(num);
             }
         });
-
     });
         
 }
+
 

@@ -46,8 +46,8 @@ class userRegister(forms.Form):
 
 # 登录验证模板
 class userLogin(forms.Form):
-    username = forms.CharField(error_messages={'required': '请输入用户名'})
-    pwd = forms.CharField(error_messages={'required': '请输入密码'})
+    loginname = forms.CharField(error_messages={'required': '请输入用户名'})
+    pwds = forms.CharField(error_messages={'required': '请输入密码'})
     checkCodes = forms.CharField(error_messages={'required': '请输入验证码'})
 
 
@@ -90,7 +90,7 @@ def useremail(reg):
     ret = errorMessages()
     if obj.is_valid():  # 注：is_valid()要获取到所有元素的正确信息才会得到True，只有一个是不可以的
         # 判断邮箱是否注册
-        emails=obj.clean()['email']
+        emails = obj.clean()['email']
         if models.userInfo.objects.filter(email=emails).count():
             ret.emailError = "此邮箱已被注册"
             return HttpResponse(json.dumps(ret.__dict__))
@@ -182,13 +182,13 @@ def login(request):
             ret.registerError["checkCodes"] = [{"message": "验证码错误"}]
             return HttpResponse(json.dumps(ret.__dict__))
         else:
-            coun = models.userInfo.objects.filter(Q(Q(username=form['username']) & Q(pwd=form['pwd'])) |
-                                                  Q(Q(email=form['username']) & Q(pwd=form['pwd']))).count()
+            coun = models.userInfo.objects.filter(Q(Q(username=form['loginname']) & Q(pwd=form['pwds'])) |
+                                                  Q(Q(email=form['loginname']) & Q(pwd=form['pwds']))).count()
             if not coun:
                 ret.registerError["pwd"] = [{"message": "用户名(邮箱)或密码错误"}]
                 return HttpResponse(json.dumps(ret.__dict__))
             else:
-                request.session["username"] = form['username']
+                request.session["username"] = form['loginname']
                 ret.status = True
     else:
         loginMsg = log.errors.as_json()

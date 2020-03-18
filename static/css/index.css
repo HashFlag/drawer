@@ -299,6 +299,7 @@ body{
     width: 130px;
     height: 130px;
 }
+/* 点赞 */
 .left_message_mes{
    width: 100%;
    margin-top: 2px;
@@ -313,6 +314,41 @@ body{
 .left_message_zan{
     width: 100px;
     float: left;
+}
+/* 评论 */
+.msg_comment{
+    width: 100%;
+    margin-top: 10px;
+    overflow: hidden;
+    border-bottom: 1px solid black;
+
+}
+.user-face{
+    width: 8%;
+    float: left;
+    text-align: center;
+    margin-top: 15px;
+}
+.user-face img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.textarea-container{
+    float: left;
+}
+.ipt-txt{
+    float: left;
+}
+.comment-submit{
+    height: 40px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.comments{
+    width: 100%;
+    margin-bottom: 10px;
 }
 /* 分页 */
 .mes_pages{
