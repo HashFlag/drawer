@@ -40,7 +40,11 @@
             <!-- 用户 -->
             <div class="title_user">
                 <div class="imgs">
-                    <img src="/static/img/tx.jpg" alt="">
+                    {% if username == null %}
+                        <img src="/static/img/tx07.jpg" alt="">
+                    {% else %}
+                        <img src="/{{ img_path.path }}" alt="">
+                    {% endif %}
                 </div>
                 <div class="user">
                     {% if username == null %}

@@ -281,7 +281,6 @@ body{
 }
 .left_message{
     width: 750px;
-    /* border-bottom: 1px solid black;  */
     overflow: hidden;  
 }
 .left_message_hidden{
@@ -320,8 +319,7 @@ body{
     width: 100%;
     margin-top: 10px;
     overflow: hidden;
-    border-bottom: 1px solid black;
-
+    /* border-bottom: 1px solid black; */
 }
 .user-face{
     width: 8%;
@@ -335,7 +333,10 @@ body{
     border-radius: 50%;
 }
 .textarea-container{
+    width: 92%;
     float: left;
+    padding-bottom: 10px;
+    /* border-bottom: 1px solid #aaaaaa; */
 }
 .ipt-txt{
     float: left;
@@ -350,6 +351,7 @@ body{
     width: 100%;
     margin-bottom: 10px;
 }
+
 /* 分页 */
 .mes_pages{
     width: 100%;
@@ -406,6 +408,9 @@ body{
     margin-top: 6px;
     text-decoration: none;
 }
+
+
+/* 个人信息层 */
 /* 遮罩层 */
 .box{
     width: 100%;
@@ -555,6 +560,53 @@ body{
 }
 .send_list{
     margin-top: 20px;
+}
+#buttonSend{
+    width: 60px;
+    height: 30px;
+    background-color: rgb(50, 250, 250);
+    float: right;
+}
+/* 设置 */
+.user_sitting{
+    border: 1px solid black;
+    width: 500px;
+    height: 300px;
+    background-color: white;
+    z-index: 40;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.user_sitting_title{
+    width: 100%;
+    height: 45px;
+    background-color: rgb(175, 231, 238);
+    margin-bottom:20px;
+}
+.user_sitting_title span{
+    color: rgb(14, 212, 238);
+    font-size: 26px;
+    margin-left: 15px;
+}
+.user_sitting_msg{
+    width: 400px;
+    height: 220px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    padding: 0;
+}
+.user_sitting_list{
+    margin-top: 20px;
+    margin-left: 10px;
+}
+.user_sitting_list input{
+    border-radius: 2px;
 }
 #buttonSend{
     width: 60px;

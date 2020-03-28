@@ -25,9 +25,9 @@
                 <li>
                     <div class="send_user">
                         <div class="send_user_img">
-                            <img src="/static/img/tx02.jpeg" alt="" style="width: 30px;height: 30px;border-radius: 50%">
+                            <img src="/{{ foo.userSend.path }}" alt="" style="width: 30px;height: 30px;border-radius: 50%">
                         </div>
-                        <div class="send_user_name">{% senduser foo %}</div>
+                        <div class="send_user_name">{{ foo.userSend.username }}</div>
                         <div class="send_user_time"><h7>{{ foo.ctime }}</h7></div>
                     </div>
                     <div class="left_message">
@@ -46,21 +46,14 @@
                             <div id="msg-id" style="display: none;">{{ foo.id }}</div>
                         </div>
                         <div class="left_message_zan" >
-                            <span id="comment" class="iconfont" style="margin-left: 2px;cursor:pointer;">&#xe632;</span>
+                            <span id="comments" class="iconfont" style="margin-left: 2px;cursor:pointer;">
+                                <a href="/comment-{{ foo.id }}/" style="text-decoration:none;color: black;">
+                                    &#xe632;
+                                </a>
+                            </span>
                             <span>{{ foo.commentcount }}</span>
+                            <div id="msg-id" style="display: none;">{{ foo.id }}</div>
                         </div>
-                    </div>
-                    <div class="msg_comment">
-                        <div class="user-face">
-                            <img class="user-head" cols="80" rows="4" src="/static/img/wlop.jpg">
-                        </div>
-                        <div class="textarea-container">
-                            <textarea cols="80" name="msg" rows="4"
-                                      placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"
-                                      class="ipt-txt"></textarea>
-                            <button type="submit" class="comment-submit">发表评论</button>
-                        </div>
-                        <div class="comments">评论</div>
                     </div>
                 </li>
                 {% endfor %}
@@ -93,15 +86,21 @@
                 <div class="user_sonpage_box" id="userRegister">注册</div>
                 <hr style="top: 0;padding: 0;margin: 0;">
             {% else %}
-                <div class="user_sonpage_box">收藏</div>
+                <div class="user_sonpage_box" id="like">收藏</div>
                 <hr style="top: 0;padding: 0;margin: 0;">
-                <div class="user_sonpage_box">管理</div>
+                <div class="user_sonpage_box" id="management">
+                    <a href="/management/?username={{ username }}" style="color: black;text-decoration: none;">管理</a>
+                </div>
                 <hr style="top: 0;padding: 0;margin: 0;">
-                <div class="user_sonpage_box">历史</div>
+                <div class="user_sonpage_box">
+                    <a href="/history/?username={{ username }}" style="color: black;text-decoration: none;">历史</a>
+                </div>
                 <hr style="top: 0;padding: 0;margin: 0;">
-                <div class="user_sonpage_box">设置</div>
+                <div class="user_sonpage_box" id="settings">设置</div>
                 <hr style="top: 0;padding: 0;margin: 0;">
-                <div class="user_sonpage_box"><a href="/logout/">注销</a></div>
+                <div class="user_sonpage_box">
+                    <a href="/logout/" style="color: black;text-decoration: none;">注销</a>
+                </div>
             {% endif %}
         </div>
     </div>
@@ -192,10 +191,34 @@
             </div>
         </form>
     </div>
+    <!-- 设置 -->
+    <div class="user_sitting">
+        <div class="user_sitting_title">
+            <span>个人设置</span>
+            <span class="iconfont" style="margin-left: 340px;cursor: pointer;">&#xe6dc;</span>
+        </div>
+        <div class="user_sitting_msg">
+            <form id="user_sitting_sendnews">
+                <div class="user_sitting_list">
+                    用户名：<input type="text" id="rev_name" name="rev_name" placeholder="请输入修改的用户名">
+                </div>
+                <div class="user_sitting_list">
+                    邮箱：<input type="text" id="rev_email" name="rev_email" placeholder="请输入修改的邮箱" />
+                </div>
+                <div class="user_sitting_list">
+                    密码：<input type="text" id="rev_pwd" name="rev_pwd" placeholder="请输入修改的密码" />
+                </div>
+            </form>
+            <div class="user_sitting_list">
+                头像修改(上传)：<input type="file" name="imgfile" id="imgfile">
+            </div>
+            <div class="user_sitting_list">
+                <input id="sitSend" type="button" value="提交" style="cursor: pointer;">
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block sends %}
-    <!-- 遮罩层 -->
-    <div class="box"></div>
     <!-- 发布 -->
     <div class="user_send">
         <div class="user_send_title">
@@ -205,7 +228,10 @@
         <div class="user_send_msg">
             <form id="sendnews">
                 <div class="send_list">标题：<input type="text" id="title" name="title" placeholder="标题"></div>
-                <div class="send_list">内容：<textarea id="textmsg" type="text" cols="40" rows="10"></textarea></div>
+                <div class="send_list">内容：
+                    <textarea id="textmsg" type="text" cols="40" rows="10"
+                              placeholder="内容必填" style="resize:none"></textarea>
+                </div>
                 <div class="send_list">连接：<input type="text" id="url" name="url" placeholder="资源连接（可以为空）" /></div>
                 <div class="send_list">分类：
                     <select name="" id="selectmsg">

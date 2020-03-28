@@ -3,14 +3,8 @@
 # -*- coding:utf-8 -*-
 from django import template
 from django.utils.safestring import mark_safe
-
+import json
 register = template.Library()
-
-
-@register.simple_tag
-def senduser(foo):
-    username = foo.userSend.username
-    return username
 
 
 @register.simple_tag
@@ -32,7 +26,47 @@ def page_list(queryset):
                 add_dot_ele = True
     return mark_safe(page_btns)
 
-    return None
+
+@register.simple_tag
+def comshow(ret):
+    ret = json.loads(ret)
+    html = diGui(ret)
+    return mark_safe(html)
+
+
+def diGui(son):
+    html = ""
+    replay = '<div class="textarea-container">' \
+             '<textarea cols="50" name="msg" id="replay-com" rows="2" ' \
+             'placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。" ' \
+             'class="ipt-txt"></textarea>' \
+             '<button type="submit" ' \
+             'class="replay-submit" ' \
+             'id="replay-submit" ' \
+             'style="margin-top:5px;margin-left:5px;">回复评论</button></div>'
+    for cv in son:
+        args = '<div class="msg_comment">' \
+              '<div class="user-face">' \
+              '<img class="user-head" cols="80" rows="4" src="/static/img/tx07.jpg">' \
+              '</div>' \
+              '<div class="textarea-container">'
+        args += '<p>' + cv['user'] + '</p>'
+        args += '<p>内容：' + cv['content'] + '</p>'
+        args += '<p>来自' + \
+                cv['device'] + \
+                '客户端 &nbsp;&nbsp;&nbsp;' + \
+                cv['ctime'] + \
+                '<p style="display:none;">' + str(cv['id']) + '</p>' + replay
+
+        args += diGui(cv['son'])
+        args += "</div><hr></div>"
+        html += args
+    return html
+
+
+
+
+
 
 
 

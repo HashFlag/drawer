@@ -26,4 +26,9 @@ urlpatterns = [
     path('logout/', usermsg.logout),
     path('index/', views.index),
     path('zan/', views.zan),
+    path('management/', views.management),
+    path('history/', views.history),
+    path('usersit/', views.usersit),
+    re_path(r'comment-(\d+)/', views.comment),
+
 ]

@@ -184,10 +184,11 @@ def login(request):
         else:
             coun = models.userInfo.objects.filter(Q(Q(username=form['loginname']) & Q(pwd=form['pwds'])) |
                                                   Q(Q(email=form['loginname']) & Q(pwd=form['pwds']))).count()
-            if not coun:
-                ret.registerError["pwd"] = [{"message": "用户名(邮箱)或密码错误"}]
+            if coun == 0:
+                ret.registerError["pwds"] = [{"message": "用户名(邮箱)或密码错误"}]
                 return HttpResponse(json.dumps(ret.__dict__))
             else:
+                request.session["is_login"] = True
                 request.session["username"] = form['loginname']
                 ret.status = True
     else:
@@ -200,6 +201,18 @@ def login(request):
 def logout(req):
     req.session.clear()
     return redirect("/index/")
+
+
+# 权限管理（session）装饰器
+def auth(func):
+    def inner(request, *args, **kwargs):
+        is_login = request.session.get('is_login')
+        if is_login:
+            return func(request, *args, **kwargs)
+        else:
+            return redirect('/index/')
+    return inner
+
 
 
 

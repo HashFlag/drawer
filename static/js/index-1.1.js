@@ -3,6 +3,8 @@ $(function(){
     loginTab();
     msgSend();
     zanTab();
+    usersitTab();
+    usercomTab();
 });
 /* 邮箱验证 */
 function emailTab(){
@@ -132,6 +134,7 @@ function loginTab(){
         })
     })
 }
+
 /* 消息发布 */
 function msgSend(){
     $("#buttonSend").click(function(){
@@ -160,6 +163,7 @@ function msgSend(){
         })
     });
 }
+
 /* 点赞功能 */
 function zanTab(){
     $("#messages").on('click','#zan',function(){
@@ -182,8 +186,105 @@ function zanTab(){
                 $(tdc).after(num);
             }
         });
-    });
-        
+    });      
 }
+/* 用户设置 */
+function usersitTab(){
+    $("#sitSend").click(function(){
+        let dic = new FormData();
+        dic.append('username', $("#usern").text());
+        dic.append('rev_name', $("#rev_name").val());
+        dic.append('rev_email', $("#rev_email").val());
+        dic.append('rev_pwd', $("#rev_pwd").val());
+        dic.append('imgfile', document.getElementById('imgfile').files[0]);
+        console.log($("#usern").text());
+        $.ajax({
+            url:"/usersit/",
+            type:"post",
+            data:dic,
+            processData:false,
+            contentType:false,
+            dataType:"json",
+            success:function(arg){
+                if(arg.success){
+                    alert("修改成功"),
+                    location.href="/logout/";
+                }else{
+                    alert("修改失败");
+                }
+            },
+        });
+    })
+}
+/* 用户评论 */
+function usercomTab(){
+    // 评论的发布
+    $("#comment-submit").click(function(){
+        let tds=$("#msg-id").text();
+        let username = $("#usern").text();
+        let coms = $("#msg-com").val();
+        url = "/comment-"+ tds +"/" ;
+        let bols = false;
+        $.ajax({
+            url:url,
+            type:"post",
+            data:{id:tds, username:username, comment:coms, bols:bols},
+            dataType:'json',
+            headers:{'Content-Type' : 'application/x-www-form-urlencoded'},
+            success: function(arg){
+                alert("评论成功");
+                $("#msg-com").val("");
+                let num = document.createElement("span");
+                num.innerText = arg.num;
+                num.style = "margin-left:5px;";
+                num.id = "com-id";
+                $("#com-id").remove();
+                $("#comments").after(num);
+            }
+        });
+    });
+    // 回复评论
+    $("#msg_comments").on("click","#replay-submit",function(){
+        let id=$(this).parent().prev().text();
+        let coms=$(this).parent().children("#replay-com").val();
+        let username = $("#usern").text();
+        let tds = $("#msg-id").text();
+        url = "/comment-"+ tds +"/" ;
+        let bols = true;
+        $.ajax({
+            url:url,
+            type:"post",
+            data:{tds:tds, id:id, username:username, comment:coms, bols:bols},
+            dataType:'json',
+            headers:{'Content-Type' : 'application/x-www-form-urlencoded'},
+            success: function(arg){
+                alert("评论成功");
+                // $().val("");
+            }
+        });
+    });
+    // 删除评论
+    $(".content").on("click","#delete-submit",function(){
+        let id = $(this).parent().prev().children("#msg-id").text();
+        let puk = $(this).parent().parent().parent();
+        console.log(puk[0]);
+        $.ajax({
+            url:"/management/",
+            type:"post",
+            data:{id:id},
+            dataType:'json',
+            headers:{'Content-Type' : 'application/x-www-form-urlencoded'},
+            success: function(arg){
+                alert("删除成功");
+                $(puk).remove();
+            }
+        });
+    });
+
+}
+
+
+
+
 
 

@@ -1,0 +1,130 @@
+{% extends "fund.html" %}
+{% load tags %}
+{% block content %}
+    <div class="content">
+        <!-- 左侧块 -->
+        <div class="left">
+            <div class="left_title">
+                <div class="left_title_mes">
+                    <div class="left_hot"><p>评论</p></div>
+                </div>
+                <div class="left_title_time">
+                    <p>3天</p>
+                    <p>24小时</p>
+                    <p>即时排序</p>
+                </div>
+                <div class="left_title_post">
+                    <a href="/index/">
+                        <input id="left_title_send" type="button" value="+ &nbsp 回退" style="cursor: pointer;">
+                    </a>
+                </div>
+            </div>
+            <div class="" id="messages">
+                <ul style="list-style:none;margin: 0;padding: 0">
+                <li>
+                    <div class="send_user">
+                        <div class="send_user_img">
+                            <img src="/{{ new_obj.userSend.path }}" alt="" style="width: 30px;height: 30px;border-radius: 50%">
+                        </div>
+                        <div class="send_user_name">{{ new_obj.userSend.username }}</div>
+                        <div class="send_user_time"><h7>{{ new_obj.ctime }}</h7></div>
+                    </div>
+                    <div class="left_message">
+                        <div class="left_message_hidden">
+                            <h4>{{ new_obj.title }}</h4>
+                            <p>{{ new_obj.message }}</p>
+                        </div>
+                        <div class="left_message_image">
+                            <img src="/{{ new_obj.path }}" alt="">
+                        </div>
+                    </div>
+                    <div class="left_message_mes">
+                        <div class="left_message_zan" id="left_zan">
+                            <span id="zan" class="iconfont" style="margin-left: 2px;cursor:pointer;">&#xe688;</span>
+                            <span id="zan-num">{{ new_obj.favorcount }}</span>
+                            <div id="msg-id" style="display: none;">{{ new_obj.id }}</div>
+                        </div>
+                        <div class="left_message_zan" >
+                            <span id="comments" class="iconfont" style="margin-left: 2px;cursor:pointer;">&#xe632;</span>
+                            <span id="com-id">{{ new_obj.commentcount }}</span>
+                        </div>
+                    </div>
+                    <div id="msg_comments" >
+                        <div class="msg_comment">
+                            <div class="user-face">
+                                <img class="user-head" cols="80" rows="4" src="/{{ img_path.path }}">
+                            </div>
+                            <div class="textarea-container">
+                                <textarea cols="80" name="msg" id="msg-com" rows="4"
+                                          placeholder="请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。"
+                                          class="ipt-txt" style="resize:none"></textarea>
+                                <button type="submit" class="comment-submit" id="comment-submit">发表评论</button>
+                            </div>
+                            <hr>
+                            {% comshow ret %}
+                        </div>
+                    </div>
+                </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 右侧块 -->
+        <div class="right">
+        </div>
+            <!-- user下拉框 -->
+        <div class="user_sonpage">
+            {% if username == null %}
+                <div class="user_sonpage_box" id="userLogin">登录</div>
+                <hr style="top: 0;padding: 0;margin: 0;">
+                <div class="user_sonpage_box" id="userRegister">注册</div>
+                <hr style="top: 0;padding: 0;margin: 0;">
+            {% else %}
+                <div class="user_sonpage_box" id="like">收藏</div>
+                <hr style="top: 0;padding: 0;margin: 0;">
+                <div class="user_sonpage_box" id="management">
+                    <a href="/management/?username={{ username }}" style="color: black;text-decoration: none;">管理</a>
+                </div>
+                <hr style="top: 0;padding: 0;margin: 0;">
+                <div class="user_sonpage_box">
+                    <a href="/history/?username={{ username }}" style="color: black;text-decoration: none;">历史</a>
+                </div>
+                <hr style="top: 0;padding: 0;margin: 0;">
+                <div class="user_sonpage_box" id="settings">设置</div>
+                <hr style="top: 0;padding: 0;margin: 0;">
+                <div class="user_sonpage_box">
+                    <a href="/logout/" style="color: black;text-decoration: none;">注销</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,6 +7,7 @@ class userInfo(models.Model):
     username = models.CharField(max_length=32, unique=True)
     email = models.CharField(max_length=32, unique=True)  # 唯一索引
     pwd = models.CharField(max_length=64)
+    path = models.CharField(max_length=128, null=True)
     ctime = models.DateTimeField()
 
 
@@ -51,8 +52,8 @@ class news(models.Model):
 # 评价
 class comment(models.Model):
     news = models.ForeignKey(to="news", to_field="id", on_delete=models.CASCADE)
-    user = models.ForeignKey(to="userInfo", to_field="nid", on_delete=models.CASCADE)
-    content = models.CharField(max_length=164)
+    user = models.CharField(max_length=32, null=True)
+    content = models.TextField(null=False)
     device = models.CharField(max_length=32, null=True)  # 设备名
     ctime = models.DateTimeField(auto_now_add=True)
     parentcomment = models.ForeignKey(to="self", null=True, related_name="pc", on_delete=models.CASCADE)

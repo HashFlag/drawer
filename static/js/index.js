@@ -3,6 +3,7 @@ $(function(){
     userlogin();
     userregister();
     sendTab();
+    sitTab();
 });
 // 用户下拉信息详情
 function userTab(){
@@ -43,6 +44,16 @@ function sendTab(){
         $(".user_send").hide();
     })
 }
-
+// 设置
+function sitTab(){
+    $("#settings").click(function(){
+        $(".box").show();
+        $(".user_sitting").show();
+    });
+    $(".iconfont").click(function(){
+        $(".box").hide();
+        $(".user_sitting").hide();
+    })
+}
 
 
