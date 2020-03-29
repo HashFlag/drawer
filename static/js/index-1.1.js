@@ -131,7 +131,7 @@ function loginTab(){
                     location.href="/index/";
                 }
             }
-        })
+        });
     })
 }
 

@@ -5,10 +5,18 @@ from django.db import models
 class userInfo(models.Model):
     nid = models.AutoField(primary_key=True)
     username = models.CharField(max_length=32, unique=True)
-    email = models.CharField(max_length=32, unique=True)  # 唯一索引
+    email = models.CharField(max_length=32, unique=True)  # 唯一索引l
     pwd = models.CharField(max_length=64)
     path = models.CharField(max_length=128, null=True)
     ctime = models.DateTimeField()
+
+    def __str__(self):
+        return self.username
+
+    class Meta:
+        verbose_name = "用户表"
+        verbose_name_plural = "用户表"
+        ordering = ['nid']
 
 
 # 注：DateTimeField是表示该字段为：日期和时间，而DateField只表示日期
@@ -20,7 +28,7 @@ class userSend(models.Model):
     ctime = models.DateTimeField()  # 时间
 
 
-# 新闻
+# 动态
 class news(models.Model):
     title = models.CharField(max_length=64)
     message = models.TextField(null=True)
@@ -48,6 +56,14 @@ class news(models.Model):
 #     user = models.ForeignKey(to="userInfo",to_field="nid",on_delete=models.CASCADE)
 #     news = models.ForeignKey(to="news",to_field="id",on_delete=models.CASCADE)
 
+    def __str__(self):
+        return str(self.id)
+
+    class Meta:
+        verbose_name = "动态表"
+        verbose_name_plural = "动态表"
+        ordering = ['id']
+
 
 # 评价
 class comment(models.Model):
@@ -64,12 +80,18 @@ class comment(models.Model):
 # obj.news_set 等同于-->obj.din （related_name）
 # related_query_name也是反向查询时使用的替代名字
 
+    class Meta:
+        verbose_name = "评论表"
+        verbose_name_plural = "评论表"
+        ordering = ['id']
+
 
 # 点赞
 class zan(models.Model):
     news = models.ForeignKey(to="news", to_field="id", on_delete=models.CASCADE)
     username = models.CharField(max_length=32, null=True)
     bools = models.BooleanField(default=False, null=True)
+
 
 
 

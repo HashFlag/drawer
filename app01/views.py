@@ -66,7 +66,6 @@ def zan(request):
     if request.method == "POST":
         id = request.POST.get('id')
         username = request.POST.get("username")
-        print("username", username)
         filte = models.zan.objects.filter(news_id=id, username=username)
         newsids = models.news.objects.filter(id=id)
         if not filte:
@@ -180,7 +179,6 @@ def history(request):
     if request.method == "GET":
         username = request.GET.get('username')
         queryset = models.zan.objects.filter(username=username, bools=True)
-        print(queryset[0].news.userSend.username)
         if username:
             face_img = models.userInfo.objects.get(username=username)
         return render(request, "history.html", {'username': username,
@@ -205,8 +203,4 @@ def management(request):
         models.news.objects.filter(id=id).delete()
         pop_dict['success'] = True
     return HttpResponse(json.dumps(pop_dict))
-
-
-
-
 

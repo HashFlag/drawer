@@ -94,7 +94,34 @@
         </div>
     </div>
 {% endblock %}
-
+{% block LoginOrRegister %}
+    <!-- 设置 -->
+    <div class="user_sitting">
+        <div class="user_sitting_title">
+            <span>个人设置</span>
+            <span class="iconfont" style="margin-left: 340px;cursor: pointer;">&#xe6dc;</span>
+        </div>
+        <div class="user_sitting_msg">
+            <form id="user_sitting_sendnews">
+                <div class="user_sitting_list">
+                    用户名：<input type="text" id="rev_name" name="rev_name" placeholder="请输入修改的用户名">
+                </div>
+                <div class="user_sitting_list">
+                    邮箱：<input type="text" id="rev_email" name="rev_email" placeholder="请输入修改的邮箱" />
+                </div>
+                <div class="user_sitting_list">
+                    密码：<input type="text" id="rev_pwd" name="rev_pwd" placeholder="请输入修改的密码" />
+                </div>
+            </form>
+            <div class="user_sitting_list">
+                头像修改(上传)：<input type="file" name="imgfile" id="imgfile">
+            </div>
+            <div class="user_sitting_list">
+                <input id="sitSend" type="button" value="提交" style="cursor: pointer;">
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
 
 
