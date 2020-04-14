@@ -22,7 +22,7 @@ def page_list(queryset):
                          (page_num, ele_class, page_num)
         else:
             if add_dot_ele == False:
-                page_btns += '''<div class="page_number">...</div>'''
+                page_btns += '''<div class="page_number"><p style="margin-top:5px;">...</p></div>'''
                 add_dot_ele = True
     return mark_safe(page_btns)
 

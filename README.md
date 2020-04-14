@@ -1,7 +1,7 @@
 # python-drawer
 
 #### 介绍
-仿抽屉新热榜网站
+bbs论坛
 
 #### 软件架构
 使用Django框架
@@ -9,7 +9,7 @@
 
 #### 安装教程
 
-1.  安装pycharm，python3.7，sqlite3数据库
+1.  安装pycharm，python3.7，mysql数据库
 2.  导入项目教程请看博客：https://www.cnblogs.com/wylshkjj/p/11983596.html
 
 #### 使用说明

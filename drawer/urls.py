@@ -29,6 +29,11 @@ urlpatterns = [
     path('management/', views.management),
     path('history/', views.history),
     path('usersit/', views.usersit),
+    path('district/', views.district),
+    path('punster/', views.punster),
+    path('picdis/', views.picdis),
+    path('otat/', views.otat),
+    path('qana/', views.qana),
     re_path(r'comment-(\d+)/', views.comment),
 
 ]

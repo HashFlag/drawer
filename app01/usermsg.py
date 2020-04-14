@@ -24,7 +24,7 @@ def email(email_list, content, subject="YY新热榜-用户注册"):
     # SMTP服务
     server = smtplib.SMTP("smtp.163.com", 25)
     # SMTP登录网易邮箱账号
-    server.login("wylshkjj@163.com", "Love0628")
+    server.login("wylshkjj@163.com", "******")  # 为了账号安全这个密码自行设置
     # 发送的邮箱
     server.sendmail('wylshkjj@163.com', email_list, msg.as_string())
     server.quit()

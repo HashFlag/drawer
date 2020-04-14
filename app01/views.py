@@ -15,7 +15,7 @@ def index(request):
     if request.method == "GET":
         username = request.session.get("username")
         new_obj = models.news.objects.all()
-        paginator = Paginator(new_obj, 4)
+        paginator = Paginator(new_obj, 2)
         page = request.GET.get("p")
         try:
             query_sets = paginator.page(page)
@@ -203,4 +203,256 @@ def management(request):
         models.news.objects.filter(id=id).delete()
         pop_dict['success'] = True
     return HttpResponse(json.dumps(pop_dict))
+
+
+# 42区
+def district(request):
+    if request.method == "GET":
+        username = request.session.get("username")
+        new_obj = models.news.objects.filter(nt=1)
+        paginator = Paginator(new_obj, 4)
+        page = request.GET.get("p")
+        try:
+            query_sets = paginator.page(page)
+        except PageNotAnInteger:
+            # 如果页不是整数，则传递第一页。
+            query_sets = paginator.page(1)
+        except EmptyPage:
+            # 如果页面超出范围（例如9999），则提交结果的最后一页。
+            query_sets = paginator.page(paginator.num_pages)
+        if username:
+            face_img = models.userInfo.objects.get(username=username)
+            return render(request, "district.html", {'queryset': query_sets,
+                                                  'username': username,
+                                                  'img_path': face_img})
+        else:
+            return render(request, "district.html", {'queryset': query_sets,
+                                                  'username': username})
+    elif request.method == "POST":
+        username = request.session.get("username")
+        pop_dict = {"status": True, "error": None, "data": None, "success": None}
+        title = request.POST.get("title")
+        message = request.POST.get("textmsg")
+        url = request.POST.get("url", None)
+        userSend = models.userInfo.objects.get(username=username)
+        nt = request.POST.get("selectmsg")
+        path = ""
+        file_obj = request.FILES.get("userfile")
+        if file_obj:
+            path = os.path.join('static', 'upload', file_obj.name)
+            with open(path, 'wb+') as f:
+                for chunk in file_obj.chunks():
+                    f.write(chunk)
+        if message:
+            models.news.objects.create(title=title,
+                                       message=message,
+                                       url=url,
+                                       userSend=userSend,
+                                       nt=nt, path=path)
+            pop_dict['success'] = True
+        else:
+            pop_dict['error'] = "请填写内容"
+        return HttpResponse(json.dumps(pop_dict))
+
+
+# 段子
+def punster(request):
+    if request.method == "GET":
+        username = request.session.get("username")
+        new_obj = models.news.objects.filter(nt=2)
+        paginator = Paginator(new_obj, 4)
+        page = request.GET.get("p")
+        try:
+            query_sets = paginator.page(page)
+        except PageNotAnInteger:
+            # 如果页不是整数，则传递第一页。
+            query_sets = paginator.page(1)
+        except EmptyPage:
+            # 如果页面超出范围（例如9999），则提交结果的最后一页。
+            query_sets = paginator.page(paginator.num_pages)
+        if username:
+            face_img = models.userInfo.objects.get(username=username)
+            return render(request, "district.html", {'queryset': query_sets,
+                                                  'username': username,
+                                                  'img_path': face_img})
+        else:
+            return render(request, "district.html", {'queryset': query_sets,
+                                                  'username': username})
+    elif request.method == "POST":
+        username = request.session.get("username")
+        pop_dict = {"status": True, "error": None, "data": None, "success": None}
+        title = request.POST.get("title")
+        message = request.POST.get("textmsg")
+        url = request.POST.get("url", None)
+        userSend = models.userInfo.objects.get(username=username)
+        nt = request.POST.get("selectmsg")
+        path = ""
+        file_obj = request.FILES.get("userfile")
+        if file_obj:
+            path = os.path.join('static', 'upload', file_obj.name)
+            with open(path, 'wb+') as f:
+                for chunk in file_obj.chunks():
+                    f.write(chunk)
+        if message:
+            models.news.objects.create(title=title,
+                                       message=message,
+                                       url=url,
+                                       userSend=userSend,
+                                       nt=nt, path=path)
+            pop_dict['success'] = True
+        else:
+            pop_dict['error'] = "请填写内容"
+        return HttpResponse(json.dumps(pop_dict))
+
+
+# 图片
+def picdis(request):
+    if request.method == "GET":
+        username = request.session.get("username")
+        new_obj = models.news.objects.filter(nt=3)
+        paginator = Paginator(new_obj, 4)
+        page = request.GET.get("p")
+        try:
+            query_sets = paginator.page(page)
+        except PageNotAnInteger:
+            # 如果页不是整数，则传递第一页。
+            query_sets = paginator.page(1)
+        except EmptyPage:
+            # 如果页面超出范围（例如9999），则提交结果的最后一页。
+            query_sets = paginator.page(paginator.num_pages)
+        if username:
+            face_img = models.userInfo.objects.get(username=username)
+            return render(request, "picdis.html", {'queryset': query_sets,
+                                                  'username': username,
+                                                  'img_path': face_img})
+        else:
+            return render(request, "picdis.html", {'queryset': query_sets,
+                                                  'username': username})
+    elif request.method == "POST":
+        username = request.session.get("username")
+        pop_dict = {"status": True, "error": None, "data": None, "success": None}
+        title = request.POST.get("title")
+        message = request.POST.get("textmsg")
+        url = request.POST.get("url", None)
+        userSend = models.userInfo.objects.get(username=username)
+        nt = request.POST.get("selectmsg")
+        path = ""
+        file_obj = request.FILES.get("userfile")
+        if file_obj:
+            path = os.path.join('static', 'upload', file_obj.name)
+            with open(path, 'wb+') as f:
+                for chunk in file_obj.chunks():
+                    f.write(chunk)
+        if message:
+            models.news.objects.create(title=title,
+                                       message=message,
+                                       url=url,
+                                       userSend=userSend,
+                                       nt=nt, path=path)
+            pop_dict['success'] = True
+        else:
+            pop_dict['error'] = "请填写内容"
+        return HttpResponse(json.dumps(pop_dict))
+
+
+# 挨踢1024
+def otat(request):
+    if request.method == "GET":
+        username = request.session.get("username")
+        new_obj = models.news.objects.filter(nt=4)
+        paginator = Paginator(new_obj, 4)
+        page = request.GET.get("p")
+        try:
+            query_sets = paginator.page(page)
+        except PageNotAnInteger:
+            # 如果页不是整数，则传递第一页。
+            query_sets = paginator.page(1)
+        except EmptyPage:
+            # 如果页面超出范围（例如9999），则提交结果的最后一页。
+            query_sets = paginator.page(paginator.num_pages)
+        if username:
+            face_img = models.userInfo.objects.get(username=username)
+            return render(request, "otat.html", {'queryset': query_sets,
+                                                  'username': username,
+                                                  'img_path': face_img})
+        else:
+            return render(request, "otat.html", {'queryset': query_sets,
+                                                  'username': username})
+    elif request.method == "POST":
+        username = request.session.get("username")
+        pop_dict = {"status": True, "error": None, "data": None, "success": None}
+        title = request.POST.get("title")
+        message = request.POST.get("textmsg")
+        url = request.POST.get("url", None)
+        userSend = models.userInfo.objects.get(username=username)
+        nt = request.POST.get("selectmsg")
+        path = ""
+        file_obj = request.FILES.get("userfile")
+        if file_obj:
+            path = os.path.join('static', 'upload', file_obj.name)
+            with open(path, 'wb+') as f:
+                for chunk in file_obj.chunks():
+                    f.write(chunk)
+        if message:
+            models.news.objects.create(title=title,
+                                       message=message,
+                                       url=url,
+                                       userSend=userSend,
+                                       nt=nt, path=path)
+            pop_dict['success'] = True
+        else:
+            pop_dict['error'] = "请填写内容"
+        return HttpResponse(json.dumps(pop_dict))
+
+
+# 你问我答
+def qana(request):
+    if request.method == "GET":
+        username = request.session.get("username")
+        new_obj = models.news.objects.filter(nt=5)
+        paginator = Paginator(new_obj, 4)
+        page = request.GET.get("p")
+        try:
+            query_sets = paginator.page(page)
+        except PageNotAnInteger:
+            # 如果页不是整数，则传递第一页。
+            query_sets = paginator.page(1)
+        except EmptyPage:
+            # 如果页面超出范围（例如9999），则提交结果的最后一页。
+            query_sets = paginator.page(paginator.num_pages)
+        if username:
+            face_img = models.userInfo.objects.get(username=username)
+            return render(request, "qana.html", {'queryset': query_sets,
+                                                  'username': username,
+                                                  'img_path': face_img})
+        else:
+            return render(request, "qana.html", {'queryset': query_sets,
+                                                  'username': username})
+    elif request.method == "POST":
+        username = request.session.get("username")
+        pop_dict = {"status": True, "error": None, "data": None, "success": None}
+        title = request.POST.get("title")
+        message = request.POST.get("textmsg")
+        url = request.POST.get("url", None)
+        userSend = models.userInfo.objects.get(username=username)
+        nt = request.POST.get("selectmsg")
+        path = ""
+        file_obj = request.FILES.get("userfile")
+        if file_obj:
+            path = os.path.join('static', 'upload', file_obj.name)
+            with open(path, 'wb+') as f:
+                for chunk in file_obj.chunks():
+                    f.write(chunk)
+        if message:
+            models.news.objects.create(title=title,
+                                       message=message,
+                                       url=url,
+                                       userSend=userSend,
+                                       nt=nt, path=path)
+            pop_dict['success'] = True
+        else:
+            pop_dict['error'] = "请填写内容"
+        return HttpResponse(json.dumps(pop_dict))
+
+
 

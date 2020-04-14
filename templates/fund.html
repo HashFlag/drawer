@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/iconfont.css">
     <link rel="stylesheet" href="/static/plugins/dropzone/dropzone.css">
+    <link rel="stylesheet" href="/static/layui-v2.5.6/layui/css/layui.css" media="all">
 
 </head>
 <body>
@@ -20,11 +21,11 @@
             <div class="title_mes">
                 <ul>
                     <li><a href="/index/">全部</a></li>
-                    <li><a href="#">42区</a></li>
-                    <li><a href="#">段子</a></li>
-                    <li><a href="#">图片</a></li>
-                    <li><a href="#">挨踢1024</a></li>
-                    <li><a href="#">你问我答</a></li>
+                    <li><a href="/district/">42区</a></li>
+                    <li><a href="/punster/">段子</a></li>
+                    <li><a href="/picdis/">图片</a></li>
+                    <li><a href="/otat/">挨踢1024</a></li>
+                    <li><a href="/qana/">你问我答</a></li>
                 </ul>
             </div>
             <div class="title_mes_use">
@@ -70,10 +71,25 @@
     {% block sends %}{% endblock %}
     <!-- 底部内容 -->
     <div class="bottoms"></div>
+    <canvas id="c_n9" width="1920" height="2000"
+            style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;"></canvas>
+
 </body>
+
     <script src="/static/js/jquery-3.1.1.min.js"></script>
     <script src="/static/js/jquery.cookie.js"></script>
     <script src="/static/plugins/dropzone/dropzone.js"></script>
     <script src="/static/js/index.js"></script>
+    <script src="/static/js/canvas-nest.js"></script>
     <script src="/static/js/index-1.1.js"></script>
+    <script src="/static/layui-v2.5.6/layui/layui.js"></script>
+    <script>
+        layui.use('laydate', function () {
+            var laydate = layui.laydate;
+            laydate.render({
+                elem: '#test-n1'
+                , position: 'static'
+            });
+        });
+    </script>
 </html>
