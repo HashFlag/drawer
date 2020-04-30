@@ -36,8 +36,12 @@ bbs论坛
 
 #### 项目展示
 1.  用户登录界面
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0302/195218_b4f2668d_2221473.jpeg "抽屉1.JPG")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/224351_48204d45_2221473.jpeg "bbs登录.JPG")
 2.  用户注册界面
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0302/195305_291cfc4c_2221473.jpeg "抽屉2.JPG")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/224430_417c439b_2221473.jpeg "bbs注册.JPG")
 3.  用户主页
-![输入图片说明](https://images.gitee.com/uploads/images/2020/0302/195317_d4ebfb65_2221473.jpeg "抽屉3.JPG")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/224503_984929b3_2221473.jpeg "bbs首页.JPG")
+4.  用户动态发布
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/224553_f989ef77_2221473.jpeg "bbs动态发布.JPG") 
+5.  用户评论页
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/224728_58bcaa18_2221473.jpeg "bbs评论页面.JPG")
