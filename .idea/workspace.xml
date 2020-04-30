@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77340c7a-876c-4624-997e-f5adeb5483df" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Django_Lib.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/drawer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/drawer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app01/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/app01/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app01/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app01/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,14 +23,14 @@
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../fullstatic_s2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RunManager">
@@ -74,11 +71,12 @@
       <updated>1586940116192</updated>
       <workItem from="1586940119005" duration="128000" />
       <workItem from="1586940367551" duration="22000" />
+      <workItem from="1588255742343" duration="1445000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -88,22 +86,22 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="660" y="229" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1586940386724" />
-    <state width="1054" height="155" key="GridCell.Tab.0.bottom" timestamp="1586940174185">
+    <state width="1054" height="56" key="GridCell.Tab.0.bottom" timestamp="1588257205232">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1054" height="155" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1586940174185" />
-    <state width="1054" height="155" key="GridCell.Tab.0.center" timestamp="1586940174185">
+    <state width="1054" height="56" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1588257205232" />
+    <state width="1054" height="56" key="GridCell.Tab.0.center" timestamp="1588257205232">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1054" height="155" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1586940174185" />
-    <state width="1054" height="155" key="GridCell.Tab.0.left" timestamp="1586940174184">
+    <state width="1054" height="56" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1588257205232" />
+    <state width="1054" height="56" key="GridCell.Tab.0.left" timestamp="1588257205232">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1054" height="155" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1586940174184" />
-    <state width="1054" height="155" key="GridCell.Tab.0.right" timestamp="1586940174185">
+    <state width="1054" height="56" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1588257205232" />
+    <state width="1054" height="56" key="GridCell.Tab.0.right" timestamp="1588257205232">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1054" height="155" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1586940174185" />
+    <state width="1054" height="56" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1588257205232" />
     <state x="383" y="116" key="SettingsEditor" timestamp="1586940212526">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

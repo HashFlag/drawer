@@ -26,10 +26,13 @@ class NewsAdmin(admin.ModelAdmin):
     search_fields = ('id', 'userSend')
     list_per_page = 5
 
-
+class ZanAdmin(admin.ModelAdmin):
+    list_display = ('news', 'username', 'bools')
+    list_per_page = 20
 admin.site.register(models.userInfo, UserInfoAdmin)
 admin.site.register(models.comment, CommentAdmin)
 admin.site.register(models.news, NewsAdmin)
+admin.site.register(models.zan, ZanAdmin)
 
 
 

@@ -92,7 +92,10 @@ class zan(models.Model):
     username = models.CharField(max_length=32, null=True)
     bools = models.BooleanField(default=False, null=True)
 
-
+    class Meta:
+        verbose_name = "点赞表"
+        verbose_name_plural = "点赞表"
+        ordering = ['id']
 
 
 
