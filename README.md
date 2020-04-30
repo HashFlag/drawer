@@ -35,13 +35,30 @@ bbs论坛
 14....
 
 #### 项目展示
+
 1.  用户登录界面
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/224351_48204d45_2221473.jpeg "bbs登录.JPG")
+
 2.  用户注册界面
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/224430_417c439b_2221473.jpeg "bbs注册.JPG")
+
 3.  用户主页
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/224503_984929b3_2221473.jpeg "bbs首页.JPG")
+
 4.  用户动态发布
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/224553_f989ef77_2221473.jpeg "bbs动态发布.JPG") 
+
 5.  用户评论页
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/224728_58bcaa18_2221473.jpeg "bbs评论页面.JPG")
+
+6.  用户信息修改弹窗
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/224848_b6122396_2221473.jpeg "bbs个人信息修改弹窗.JPG")
+
+7.  用户点赞历史页
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/224937_75a918ef_2221473.jpeg "bbs点赞历史信息.JPG")
+
+8.  用户动态管理页
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/225036_b27801b0_2221473.jpeg "bbs动态管理页面.JPG")
+
+9.  管理员页面
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0430/225127_bd21a06e_2221473.jpeg "bbs管理员页面.JPG")
