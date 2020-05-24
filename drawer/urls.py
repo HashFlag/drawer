@@ -34,6 +34,7 @@ urlpatterns = [
     path('picdis/', views.picdis),
     path('otat/', views.otat),
     path('qana/', views.qana),
+    path('weather/', views.weather),
     re_path(r'comment-(\d+)/', views.comment),
 
 ]

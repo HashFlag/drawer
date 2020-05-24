@@ -626,6 +626,15 @@ body{
     margin-right: 30px;
 }
 
+/* 天气信息 */
+.weather{
+    width: 280px;
+    height: 280px;
+    float: right;
+    margin-top: 20px;
+    margin-right: 30px;
+    border: 1px solid black;
+}
 /* 底部内容 */
 
 

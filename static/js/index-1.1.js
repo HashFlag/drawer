@@ -5,6 +5,7 @@ $(function(){
     zanTab();
     usersitTab();
     usercomTab();
+    weatherTab();
 });
 /* 邮箱验证 */
 function emailTab(){
@@ -283,8 +284,42 @@ function usercomTab(){
 
 }
 
-
-
-
+// 获取实时天气信息
+function weatherTab(){
+    $("#weather").click(function(){
+        $.ajax({
+            url:"/weather/",
+            type:"post",
+            data:{weather:"weather"},
+            dataType:'json',
+            headers:{'Content-Type' : 'application/x-www-form-urlencoded'},
+            success:function(arg){
+                // 城市
+                let PM25city = document.createElement('p');
+                PM25city.innerText = "城市："+ arg.data.pm25.cityName;
+                PM25city.id = 'PM25city';
+                $("#weather").after(PM25city);
+                // 天气
+                let weather = document.createElement('p');
+                weather.innerText = "天气："+ arg.data.realtime.weather.info +
+                "\n空气湿度："+ arg.data.realtime.weather.humidity +
+                "\n温度："+ arg.data.realtime.weather.temperature + "℃";
+                weather.id = 'info';
+                $("#PM25city").after(weather);
+                // 风力
+                let wind = document.createElement('p');
+                wind.innerText = "    风向："+ arg.data.realtime.wind.direct +
+                "\n风力："+ arg.data.realtime.wind.power;
+                wind.id = 'wind';
+                $("#info").after(wind);
+                // PM2.5
+                let PM25 = document.createElement('p');
+                PM25.innerText = "PM:"+ arg.data.pm25.pm25.pm25;
+                $("#wind").after(PM25);
+                console.log(arg);
+            }
+        })
+    })
+}
 
 
