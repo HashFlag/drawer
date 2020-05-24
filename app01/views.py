@@ -3,6 +3,7 @@ from app01 import models
 from django.db.models import F
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.handlers.wsgi import WSGIRequest
+from app01.weather import request1
 import re
 import json
 import os
@@ -15,7 +16,7 @@ def index(request):
     if request.method == "GET":
         username = request.session.get("username")
         new_obj = models.news.objects.all()
-        paginator = Paginator(new_obj, 2)
+        paginator = Paginator(new_obj, 4)
         page = request.GET.get("p")
         try:
             query_sets = paginator.page(page)
@@ -455,4 +456,11 @@ def qana(request):
         return HttpResponse(json.dumps(pop_dict))
 
 
-
+# 通过API接口获取天气信息
+def weather(request):
+    if request.method == "POST":
+        # 配置您申请的APPKey
+        appkey = "78b47744b7f1eae6332002be006920dc"
+        ret = request1(appkey, "GET")
+        print(ret)
+        return HttpResponse(json.dumps(ret))
